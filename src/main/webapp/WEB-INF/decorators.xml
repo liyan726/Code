@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<decorators defaultdir="/WEB-INF">
+
+<!-- 在excludes元素下指定的页面将不会由SiteMesh来装饰 -->
+    <excludes>
+        <pattern>/login/login.jsp</pattern>
+        <pattern>/WEB-INF/index.jsp</pattern>
+        <pattern>/login/*</pattern>
+    </excludes>
+	<decorator name="main" page="/ui/basic.jsp">
+		<pattern>/log</pattern>
+		<pattern>/user/*</pattern>
+		<pattern>/index</pattern>
+	</decorator>
+    <decorator name="panel" page="/ui/menu.jsp"/>
+</decorators>

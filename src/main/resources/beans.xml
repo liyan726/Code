@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+
+	<!-- 开启注解、自动扫描注解包以及加载properties配置文件 -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.code" />
+	<context:property-placeholder location="classpath*:db.properties" />
+
+
+	<!-- 1. 数据源 : DriverManagerDataSource 寻找propertues映射文件 -->
+	<bean id="datasource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+
+	<!-- 
+	    2. 可以用Spring完全接管Mybatis的配置文件 
+	     calss : mybatis的SqlSession的工厂 
+	     configLocation:加载mybatis的配置文件
+	     mapperLocations: 加载mapping文件（任意路径） (如果不用接口的方式需要配置这个，如果使用接口的方式可以不用配置 直接配置下面的Mapper即可)
+	     typeAliasesPackage:自动扫描的实体类包
+	  -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="datasource" />
+		<property name="typeAliasesPackage" value="com.code.Model"></property>
+		<!--  <property name="mapperLocations" value="classpath*:mapping/*.xml" /> 
+		
+		      <property name="configLocation" value="classpath:config/conf.xml" /> 
+		      
+		  -->
+	</bean>
+
+	<bean id="SqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+		<!-- <constructor-arg index="1" value="BATCH" />构造方法注入如果想要进行批量操作可加入这个属性 -->
+	</bean>
+
+	<!-- 4. 事务管理 : DataSourceTransactionManager -->
+	<bean id="manager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="datasource" />
+	</bean>
+
+	<!-- 
+	    class : 指定自动扫描xxxMapper.xml 映射文件的类 
+	    basePackage: 自动扫描的配置包, Mapper文件和对应的MapperInteface在同一包才可
+	 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+		p:basePackage="com.code.Mapper"
+		p:sqlSessionFactoryBeanName="sqlSessionFactory" />
+
+
+	<!-- 5. 使用声明式事务 -->
+	<tx:annotation-driven transaction-manager="manager" />
+</beans>

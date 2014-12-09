@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+ xmlns:context="http://www.springframework.org/schema/context"  
+ xmlns:p="http://www.springframework.org/schema/p"  
+ xmlns:mvc="http://www.springframework.org/schema/mvc"  
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+ xsi:schemaLocation="http://www.springframework.org/schema/beans  
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+      http://www.springframework.org/schema/context  
+      http://www.springframework.org/schema/context/spring-context.xsd  
+      http://www.springframework.org/schema/mvc  
+      http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+<!-- 开启注解,自动扫描指定的包 -->
+	<context:component-scan  base-package="com.code.controller"/>
+	<mvc:annotation-driven/>
+	
+
+	<!-- 静态资源访问 -->
+	 <mvc:resources location="/js/" mapping="/js/**"/>  
+	 <mvc:resources location="/ui/" mapping="/ui/**"/>
+	 <mvc:resources location="/css/" mapping="/css/**"/>  
+	 <mvc:resources location="/bootstarp/" mapping="/bootstarp/**"/>   
+	
+
+	<!-- 配置返回的视图相关信息 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<!-- 文件上传控制 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="10240000"/>     
+    </bean>
+
+
+	<!-- 拦截器 -->
+ 	<mvc:interceptors>
+			<mvc:interceptor>
+				<!--   某一模块的拦截：/myPath/**, 拦截所有的请求/**,可以写多个<mvc:mapping path="/**"/>-->
+				<mvc:mapping path="/user/**"/>
+				<bean class="com.code.Interface.SpringIntercepter"></bean>
+			</mvc:interceptor>
+		</mvc:interceptors>  
+</beans>
