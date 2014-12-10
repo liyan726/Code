@@ -302,6 +302,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
    <!--script for this page only-->
    <script src="<%=basePath%>ui/js/editable-table.js"></script>
+   <script src="<%=basePath%>ui/js/dynamic-table.js"></script>
+   
 
    <!-- END JAVASCRIPTS -->
    <script>

@@ -36,11 +36,11 @@
 
 
 	<!-- 拦截器 -->
- 	<mvc:interceptors>
+ <!-- 	<mvc:interceptors>
 			<mvc:interceptor>
-				<!--   某一模块的拦截：/myPath/**, 拦截所有的请求/**,可以写多个<mvc:mapping path="/**"/>-->
+				  某一模块的拦截：/myPath/**, 拦截所有的请求/**,可以写多个<mvc:mapping path="/**"/>
 				<mvc:mapping path="/user/**"/>
 				<bean class="com.code.Interface.SpringIntercepter"></bean>
 			</mvc:interceptor>
-		</mvc:interceptors>  
+		</mvc:interceptors>   -->
 </beans>
