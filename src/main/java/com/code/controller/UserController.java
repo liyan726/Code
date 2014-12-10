@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -45,16 +46,13 @@ public class UserController {
 	@RequestMapping("/users")
 	private String users(Model mo){
 		List<User> user =usermapper.getAlluser();
-		System.out.println(user.size());
 		mo.addAttribute("lis", user);
 		return "/user/users";
 	}
 	
-	
 	@RequestMapping(value = "/deluser", method = RequestMethod.POST)
 	@ResponseBody
 	private void delUser(CheckBox ck,Model mo,HttpServletRequest request,HttpServletResponse response) throws IOException{
-	
 		List li =ck.getCheckboxes();
 		for(Iterator<Integer> it =li.iterator();it.hasNext();){
 			usermapper.deleteUser(it.next());
@@ -63,4 +61,30 @@ public class UserController {
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(res);
 	}
+	
+	@RequestMapping("/update")
+	private String updateUser(int id,Model mo){
+		mo.addAttribute("user",usermapper.selectUserByid(id));
+		return "/user/updateusers";
+	}
+	
+	@RequestMapping("/updatedo")
+	private String updatedo(User u,Model mo){
+		
+		System.out.println(u.getUsername());
+		System.out.println(u.getPassword());
+		System.out.println(u.getRole());
+		System.out.println(u.getId());
+			usermapper.updateUser(u);
+		return "/sucup";
+	}
+	
+	
+	@RequestMapping("/info")
+	private String infodo(int id,Model mo){
+	  User u= usermapper.selectUserByid(id);
+	    mo.addAttribute("user",u);
+		return "/user/usershow";
+	}
+	
 }

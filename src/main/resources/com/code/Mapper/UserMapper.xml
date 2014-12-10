@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 根据id查询得到user对象 -->
 	
 	<select id="selectUserByid" parameterType="int" resultType="User">
-			select username from user where id=#{id}
+			select * from user where id=#{id}
 	</select>
 	
 	<select id="selectUserByname" parameterType="String" resultType="User">
@@ -22,9 +22,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<update id="updateUser" parameterType="User">
 		update user set
-		username=#{username} and
-		password=#{password} and
-		role=#{role} 
+		username=#{username} 
+		,
+		password=#{password} 
+		,
+		<choose>
+			<when test="role!=''">role=#{role},</when>
+			<otherwise>role="权限未分配",</otherwise>
+		</choose>
+		emails=#{emails}
 		where id=#{id}
 	</update>
 	

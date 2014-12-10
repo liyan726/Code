@@ -25,11 +25,17 @@
          });  	 
 	})
 	
-	function show() {
+	function show(id) {
+		if(id==null){
 		 var checkboxes =[];//定义一个数组      
          $('input[name="checkboxes"]:checked').each(function(){//遍历每一个名字为interest的复选框，其中选中的执行函数      
         	 checkboxes.push($(this).val());
          })  	
+		}
+		else {
+			var checkboxes=id
+			alert(checkboxes)
+		}
 		if(window.confirm('你确定要删除吗？')){
 			 $.ajax({
 					url : "/Code/user/deluser?checkboxes="+checkboxes,
@@ -39,7 +45,6 @@
 					},
 					success : function(responseText) {
 						alert(responseText)
-						
 						location.href="/Code/user/users";
 					}
 				})
@@ -48,6 +53,11 @@
            
             return false;
         }
+	}
+	
+	
+	function update(id){
+		location.href="/Code/user/update?id="+id;
 	}
 	
 </script>
@@ -79,7 +89,7 @@
 	
 							<div class="btn-group">
 								<button  class="btn green" >
-									<a href="javascript:show()"><b>删除用户</b><i class="icon-remove"></i></a>
+									<a href="javascript:show(null)"><b>删除用户</b><i class="icon-remove"></i></a>
 								</button>
 							</div>
 							
@@ -113,12 +123,12 @@
 								<tr class="">
 								<td><input type="checkbox" name="checkboxes" value="${user.id}" id="checkbox"/></td>
 									<td>${st.count}</td>
-									<td>${user.username}</td>
+									<td><a href="/Code/user/info?id=${user.id}">${user.username}</a></td>
 									<td>${user.password}</td>
 									<td class="center">${user.role}</td>
 									<td class="center">${user.emails}</td>
-									<td><a class="edit" href="javascript:;">Edit</a></td>
-									<td><a class="delete" href="javascript:;">Delete</a></td>
+									<td><a class="" href="javascript:update(${user.id})">Edit</a></td>
+									<td><a class="" href="javascript:show(${user.id})">Delete</a></td>
 								</tr>
 								</c:forEach>
 							</div>
