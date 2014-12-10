@@ -24,7 +24,18 @@ public class TestMybatisInterMapper {
 	
 	@Test
 	public void test() {
-		User u = userMapper.selectUserByid(6);
+
+		int i =0;
+		while(i<5000){
+		User u =new User();
+		u.setUsername(Math.random()+"");
+		userMapper.saveUser(u);
+		     i++;
+		     
+		     System.out.println("insert:"+i);
+		}
+		
+	//	User u = userMapper.selectUserByid(6);
 		
 	//	System.out.println(u.getName());
 	}

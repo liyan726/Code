@@ -27,4 +27,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		role=#{role} 
 		where id=#{id}
 	</update>
+	
+	<select id="getAlluser" resultType="User">
+		select * from user
+	</select>
+	
 </mapper>

@@ -22,6 +22,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <link href="<%=basePath%>ui/css/style-default.css" rel="stylesheet" id="style_color" />
    <link href="<%=basePath%>ui/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
    <link href="<%=basePath%>ui/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen">
+   <link rel="stylesheet" href="<%=basePath%>ui/assets/data-tables/DT_bootstrap.css" />
+   <link rel="stylesheet" type="text/css" href="<%=basePath%>ui/assets/uniform/css/uniform.default.css" />
+   
+   
 <title><decorator:title default="Welcome to architecture pub!" /></title>
 
 <decorator:head />
@@ -245,9 +249,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
           <!-- body-->
          
-
-       
-           
+         
            <decorator:body />
 
             <!-- END PAGE CONTENT-->         
@@ -265,14 +267,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <!-- END FOOTER -->
 
    <!-- BEGIN JAVASCRIPTS -->
-   <!-- Load javascripts at bottom, this will reduce page load time -->
    <script src="<%=basePath%>ui/js/jquery-1.8.3.min.js"></script>
    <script src="<%=basePath%>ui/js/jquery.nicescroll.js" type="text/javascript"></script>
    <script type="text/javascript" src="<%=basePath%>ui/assets/jquery-slimscroll/jquery-ui-1.9.2.custom.min.js"></script>
    <script type="text/javascript" src="<%=basePath%>ui/assets/jquery-slimscroll/jquery.slimscroll.min.js"></script>
    <script src="<%=basePath%>ui/assets/fullcalendar/fullcalendar/fullcalendar.min.js"></script>
    <script src="<%=basePath%>ui/assets/bootstrap/js/bootstrap.min.js"></script>
-
+   <script src="<%=basePath%>ui/js/jquery.blockui.js"></script>
    <!-- ie8 fixes -->
    <!--[if lt IE 9]>
    <script src="js/excanvas.js"></script>
@@ -283,8 +284,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <script src="<%=basePath%>ui/js/jquery.sparkline.js" type="text/javascript"></script>
    <script src="<%=basePath%>ui/assets/chart-master/Chart.js"></script>
    <script src="<%=basePath%>ui/js/jquery.scrollTo.min.js"></script>
-
-
+  <script type="text/javascript" src="<%=basePath%>ui/assets/uniform/jquery.uniform.min.js"></script>
+   <script type="text/javascript" src="<%=basePath%>ui/assets/data-tables/jquery.dataTables.js"></script>
+   <script type="text/javascript" src="<%=basePath%>ui/assets/data-tables/DT_bootstrap.js"></script>
+   <script src="<%=basePath%>ui/js/jquery.scrollTo.min.js"></script>
    <!--common script for all pages-->
    <script src="<%=basePath%>ui/js/common-scripts.js"></script>
 
@@ -295,6 +298,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <script src="<%=basePath%>ui/js/home-page-calender.js"></script>
    <script src="<%=basePath%>ui/js/home-chartjs.js"></script>
 
+
+
+   <!--script for this page only-->
+   <script src="<%=basePath%>ui/js/editable-table.js"></script>
+
+   <!-- END JAVASCRIPTS -->
+   <script>
+       jQuery(document).ready(function() {
+           EditableTable.init();
+       });
+   </script>
    <!-- END JAVASCRIPTS -->   
 </body>
 </html>

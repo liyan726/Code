@@ -1,5 +1,7 @@
 package com.code.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -31,5 +33,14 @@ public class UserController {
 		}
 		usermapper.saveUser(u);
 		return "/suc";
+	}
+	
+	@RequestMapping("/users")
+	private String users(Model mo){
+		List<User> user =usermapper.getAlluser();
+		System.out.println(user.size());
+		
+		mo.addAttribute("lis", user);
+		return "/user/users";
 	}
 }

@@ -1,5 +1,7 @@
 package com.code.Mapper;
 
+import java.util.List;
+
 import com.code.Model.User;
 
 
@@ -12,4 +14,6 @@ public interface UserMapper {
 	void saveUser(User  u);
 	
 	int updateUser(User u);
+	
+	List<User> getAlluser();
 }

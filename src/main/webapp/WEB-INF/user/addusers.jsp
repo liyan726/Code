@@ -75,13 +75,10 @@ $(function(){
                                     <button class="btn btn-success" type="submit">保存</button>
                                     <button class="btn" type="button">清除</button>
                                 </div>
-
-                            </sf:form>
+                            </sf:form>              
                             <!-- END FORM-->
                         </div>
                     </div>
                        <script src="<%=basePath%>ui/js/form-validation-script.js"></script>
-                       
-                       
 </body>
 </html>
