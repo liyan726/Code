@@ -1,14 +1,13 @@
 package com.code.Interface;
 
-import java.util.Map;
-
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.code.Mapper.UserMapper;
 import com.code.Model.Mes;
 import com.code.Model.User;
 
@@ -16,6 +15,8 @@ import com.code.Model.User;
 
 public class SpringIntercepter implements HandlerInterceptor {
 
+	@Resource
+	private UserMapper userMapper;
 	/**
 	 * 执行时机：视图已经被解析完毕,类似try catch 后的finally
 	 */
@@ -47,11 +48,19 @@ public class SpringIntercepter implements HandlerInterceptor {
 			Mes ms= new Mes();
 			ms.setMes_name("请先登录在进行后续操作");
 			req.setAttribute("err", ms);
+			
 			req.getRequestDispatcher("/WEB-INF/login/login.jsp").forward(req, rep);
 			return false;
 		}
 		else 
+		{
+			req.setAttribute("user", session);
+			User u = userMapper.selectAll(session.getId());
+			
+			req.setAttribute("pho", "/Code/upload/pho/"+u.getPhoto().getMark()+".jpg");
+			System.out.println("============================================"+u.getPhoto().getMark());
 		return true;
+		}
 	}
 
 }

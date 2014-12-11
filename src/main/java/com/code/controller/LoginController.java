@@ -53,7 +53,7 @@ public class LoginController {
 			return "redirect:/login";
 		}
 		req.getSession().setAttribute("user", user);
-		return "/index";
+		return "redirect:/index";
 	}
 	@RequestMapping("index")
 	private String index(Model mo,HttpServletRequest req){

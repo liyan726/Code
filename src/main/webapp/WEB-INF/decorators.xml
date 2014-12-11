@@ -10,6 +10,7 @@
 	<decorator name="main" page="/ui/basic.jsp">
 		<pattern>/log</pattern>
 		<pattern>/user/*</pattern>
+		<pattern>/info/*</pattern>
 		<pattern>/index</pattern>
 	</decorator>
     <decorator name="panel" page="/ui/menu.jsp"/>

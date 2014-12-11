@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	对于namespace写法：如果是MappInterface方式那么需要制定Interface的全路径(报名.接口名)
+	度过不是的话可以制定为Model的全路径（包名.类名；因为后面使用XX.class.getName比较方便）
+ -->
+<mapper namespace="com.code.Mapper.PhotoMapper">
+	<!-- 根据id查询得到user对象 -->
+
+	<insert id="SavePhoto" parameterType="Photo" >
+	  insert into photo(url,mark) values(#{url},#{mark})
+	</insert>
+	
+	<select id="find" parameterType="String" resultType="Photo">
+		select * from photo where mark=#{mark}
+	</select>
+
+
+</mapper>

@@ -23,14 +23,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <link href="<%=basePath%>ui/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
    <link href="<%=basePath%>ui/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen">
    <link rel="stylesheet" href="<%=basePath%>ui/assets/data-tables/DT_bootstrap.css" />
+   
    <link rel="stylesheet" type="text/css" href="<%=basePath%>ui/assets/uniform/css/uniform.default.css" />
+   
    
    
 <title><decorator:title default="Welcome to architecture pub!" /></title>
 
 <decorator:head />
 </head>
-<body class="fixed-top">
+<body class="fixed-top" >
    <!-- BEGIN HEADER -->
    <div id="header" class="navbar navbar-inverse navbar-fixed-top">
        <!-- BEGIN TOP NAVIGATION BAR -->
@@ -156,12 +158,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                        <!-- BEGIN USER LOGIN DROPDOWN -->
                        <li class="dropdown">
                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                               <img src="<%=basePath%>ui/img/avatar1_small.jpg" alt="">
-                               <span class="username">Jhon Doe</span>
+                               <img src="${pho}" alt="">
+                               <span class="username">${user.username}</span>
                                <b class="caret"></b>
                            </a>
                            <ul class="dropdown-menu extended logout">
-                               <li><a href="#"><i class="icon-user"></i>我的资料</a></li>
+                               <li><a href="/Code/user/info?id=${user.id}"><i class="icon-user"></i>我的资料</a></li>
                                <li><a href="#"><i class="icon-cog"></i>我的设置</a></li>
                                <li><a href="login.html"><i class="icon-key"></i>退出</a></li>
                            </ul>
@@ -297,7 +299,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <script src="<%=basePath%>ui/js/sparkline-chart.js"></script>
    <script src="<%=basePath%>ui/js/home-page-calender.js"></script>
    <script src="<%=basePath%>ui/js/home-chartjs.js"></script>
-
+   <script type="text/javascript" src="<%=basePath%>ui/assets/bootstrap/js/bootstrap-fileupload.js"></script>
 
 
    <!--script for this page only-->

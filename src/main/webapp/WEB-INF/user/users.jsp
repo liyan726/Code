@@ -104,6 +104,7 @@
 								</ul>
 							</div>
 						</div>
+						<br>
 						<table class="table table-striped table-hover table-bordered" id="editable-sample">
 							<thead>
 								<tr>	

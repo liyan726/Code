@@ -17,7 +17,7 @@
                   <ul class="sub">
                       <li><a class="" href="/Code/user/adduser">添加用户</a></li>
                       <li><a class="" href="/Code/user/users">查看所有用户</a></li>
-                      <li><a class="" href="slider.html">滑动</a></li>
+                      <li><a class="" href="/Code/info/pho">添加头像</a></li>
                       <li><a class="" href="metro_view.html">Metro风格</a></li>
                       <li><a class="" href="tabs_accordion.html">Tab选项卡 & 手风琴</a></li>
                       <li><a class="" href="typography.html">文字排版</a></li>

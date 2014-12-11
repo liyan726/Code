@@ -7,12 +7,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	度过不是的话可以制定为Model的全路径（包名.类名；因为后面使用XX.class.getName比较方便）
  -->
 <mapper namespace="com.code.Mapper.UserMapper">
-	<!-- 根据id查询得到user对象 -->
+	<resultMap type="User" id="UserMap">
+	    <id property="id"  column="id"/>
+	    <result property="username"  column="username"/> 
+	    <result property="emails"  column="emails"/>
+		<association property="photo" javaType="Photo">
+				<id  property="id" column="id"/>
+				<result property="url" column="url"/>
+				<result property="mark" column="mark"/>
+		</association>
+	</resultMap>
 	
 	<select id="selectUserByid" parameterType="int" resultType="User">
 			select * from user where id=#{id}
 	</select>
 	
+	<select id="selectAll" parameterType="int" resultMap="UserMap">
+		select * from user u,photo p where u.photo=p.id and u.id=#{id}
+	
+	</select>
 	<select id="selectUserByname" parameterType="String" resultType="User">
 			select * from user where username=#{username}
 	</select>
@@ -30,10 +43,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<when test="role!=''">role=#{role},</when>
 			<otherwise>role="权限未分配",</otherwise>
 		</choose>
+		photo=#{photo.id},
 		emails=#{emails}
 		where id=#{id}
+
 	</update>
-	
 	<select id="getAlluser" resultType="User">
 		select * from user
 	</select>

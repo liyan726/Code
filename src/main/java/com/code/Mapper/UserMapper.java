@@ -18,4 +18,6 @@ public interface UserMapper {
 	List<User> getAlluser();
 	
 	void deleteUser(int id);
+	
+	User selectAll(int id);
 }

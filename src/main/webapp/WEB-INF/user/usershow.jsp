@@ -12,7 +12,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script type="text/javascript" src="<%=basePath%>js/jquery-1.6.2.js"></script>
-<title>用户添加</title>
+<title>用户资料</title>
 <script type="text/javascript">
 $(function(){
 	
@@ -32,7 +32,7 @@ $(function(){
 <body>
 	 <div class="widget green">
                         <div class="widget-title">
-                            <h4><i class="icon-reorder"></i>用户添加</h4>
+                            <h4><i class="icon-reorder"></i>用户资料</h4>
                             <div class="tools">
                                 <a href="javascript:;" class="collapse"></a>
                                 <a href="#portlet-config" data-toggle="modal" class="config"></a>
@@ -42,7 +42,8 @@ $(function(){
                         </div>
                         <div class="widget-body form">
                             <!-- BEGIN FORM-->
-                               
+                       <sf:form class="cmxform form-horizontal" id="signupForm" method="post" action="/Code/user/update" >
+                        <input class="span6 " id="id" name="id" value="${user.id}" type="hidden" />
                                 <div class="control-group ">
                                     <label for="username" class="control-label">用户名</label>
                                     <div class="controls">
@@ -70,7 +71,10 @@ $(function(){
                                     </div>
                                 </div>
                                 
-                                       
+                                <div class="form-actions">
+                                    <button class="btn btn-success" type="submit">修改</button>
+                                </div>
+                                </sf:form>
                             <!-- END FORM-->
                         </div>
                     </div>

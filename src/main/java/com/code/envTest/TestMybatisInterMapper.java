@@ -1,16 +1,15 @@
 package com.code.envTest;
 
-import static org.junit.Assert.*;
-
 import javax.annotation.Resource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.code.Mapper.PhotoMapper;
 import com.code.Mapper.UserMapper;
+import com.code.Model.Photo;
 import com.code.Model.User;
 
 
@@ -22,22 +21,26 @@ public class TestMybatisInterMapper {
 	@Resource //×¢Èë
 	private UserMapper userMapper;
 	
+	@Resource //×¢Èë
+	private PhotoMapper photoMapper;
 	@Test
 	public void test() {
 
-		int i =0;
-		while(i<5000){
-		User u =new User();
-		u.setUsername(Math.random()+"");
-		userMapper.saveUser(u);
-		     i++;
-		     
-		     System.out.println("insert:"+i);
-		}
+		/*Photo p =new Photo();
+		p.setUrl("ds893");
+
+		photoMapper.SavePhoto(p);*/
 		
-	//	User u = userMapper.selectUserByid(6);
+	    Photo ph=photoMapper.find("20141211165552965565");
+	    
+	    System.out.println("============="+ph.getUrl());
+		/*System.out.println("====================="+ph.getId());
+		User u =userMapper.selectUserByid(1);
+	    u.setPhoto(ph);
+		userMapper.updateUser(u);
 		
-	//	System.out.println(u.getName());
+		User u2 =userMapper.selectAll(1);
+		System.out.println("============"+u2.getPhoto().getUrl());*/
 	}
 
 }

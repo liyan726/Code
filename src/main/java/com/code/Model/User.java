@@ -23,8 +23,9 @@ public class User {
 	private String emails;
 	private String role;
 	private String qq;
-	private String pho;
 	private String confirm_password;
+	
+	private Photo photo;
 	
 	public int getId() {
 		return id;
@@ -80,12 +81,12 @@ public class User {
 		this.qq = qq;
 	}
 
-	public String getPho() {
-		return pho;
+	public Photo getPhoto() {
+		return photo;
 	}
 
-	public void setPho(String pho) {
-		this.pho = pho;
+	public void setPhoto(Photo photo) {
+		this.photo = photo;
 	}
 
 	@NotEmpty(message="确认密码不能为空")
