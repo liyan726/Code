@@ -158,7 +158,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                        <!-- BEGIN USER LOGIN DROPDOWN -->
                        <li class="dropdown">
                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                               <img src="${pho}" alt="">
+                               <img src="<%=basePath%>ui/img/avatar1_small.jpg" alt="">
                                <span class="username">${user.username}</span>
                                <b class="caret"></b>
                            </a>

@@ -28,6 +28,10 @@
 	$(function() {
 		 $("#bu").click(function () {//全选  
 		
+			 if($("#img").val()==null||$("#img").val()==""){
+				 alert("请选取上传内容")
+				 return false
+			 }
 			$("#fo").submit()
          });  	 
 	})
