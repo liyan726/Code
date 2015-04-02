@@ -13,7 +13,7 @@ import com.code.Model.User;
 @RequestMapping("/head")
 public class HeadController {
 
-	@RequestMapping("/userinf3232")
+	@RequestMapping("/userinf")
 	public String userinf(Model no,HttpSession session){
 		User user =(User)session.getAttribute("user");
 		System.out.println(".......");
